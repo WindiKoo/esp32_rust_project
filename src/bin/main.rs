@@ -29,16 +29,15 @@ esp_bootloader_esp_idf::esp_app_desc!();
 fn main() -> ! {
     // generator version: 1.4.0
     // generator parameters: -o vscode -o esp32c3 -o wokwi
+    println!("Hello, user!");
 
     let config = esp_hal::Config::default().with_cpu_clock(CpuClock::max());
     let _peripherals = esp_hal::init(config);
 
-    
-
     loop {
         let delay_start = Instant::now();
         while delay_start.elapsed() < Duration::from_millis(500) {}
-        println!("Hello, world!");
+        
     }
 
 
