@@ -7,9 +7,10 @@
 )]
 #![deny(clippy::large_stack_frames)]
 
-use esp_hal::clock::CpuClock;
+use esp_hal::clock::{CpuClock};
+use esp_hal::gpio::{Level, Output, OutputConfig};
 use esp_hal::main;
-use esp_hal::time::{Duration, Instant};
+use esp_hal::delay::Delay;
 use esp_println::println;
 
 #[panic_handler]
@@ -32,12 +33,18 @@ fn main() -> ! {
     println!("Hello, user!");
 
     let config = esp_hal::Config::default().with_cpu_clock(CpuClock::max());
-    let _peripherals = esp_hal::init(config);
+
+    let peripherals = esp_hal::init(config);
+    let mut led = Output::new(peripherals.GPIO7, Level::Low, OutputConfig::default());
+
+    let delay = Delay::new();
 
     loop {
-        let delay_start = Instant::now();
-        while delay_start.elapsed() < Duration::from_millis(500) {}
-        
+        delay.delay_millis(500);
+        led.set_high();
+        delay.delay_millis(500);
+        led.set_low();
+
     }
 
 
