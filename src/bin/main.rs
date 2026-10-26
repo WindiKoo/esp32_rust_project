@@ -13,6 +13,8 @@ use esp_hal::main;
 use esp_hal::delay::Delay;
 use esp_println::println;
 
+use esp32_rust_project::morse_codes;
+
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
     loop {}
@@ -38,6 +40,14 @@ fn main() -> ! {
     let mut led = Output::new(peripherals.GPIO7, Level::Low, OutputConfig::default());
 
     let delay = Delay::new();
+
+    let character = 'H';
+    let code = morse_codes::get_morse_code(character);
+
+    match code {
+    Some(morse) => println!("Letter {} as morse code: {:?}", character, morse),
+    None => println!("No morse code found for character {}", character),
+    }
 
     loop {
         delay.delay_millis(500);
