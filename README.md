@@ -8,3 +8,6 @@ Wokwi.com provided suitable virtual microcontrollers for this purpose.
 I aimed to keep the hardware simple, focusing on functionality instead.
 Translating text into Morse code felt like a suitable exercise in terms of coding Rust.
 The final result is a program that uses a LED to blink the message "Hello World" in Morse code.
+
+<br>
+<img width="718" height="452" alt="ESP32-C3_led_Wokwi" src="https://github.com/user-attachments/assets/25ce3cb0-6950-4c8e-a97d-cac06d5bc1f6" />
